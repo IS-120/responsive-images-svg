@@ -1,115 +1,69 @@
-# Semantic HTML and basic navigation
+# Responsive images and SVG images
 
-Create an HTML page using semantic markup. Include a navigation menu that links to two subpages.
+Learn about using `<picture>` for art direction, `<img>` with `srcset` and `sizes` for responsive images, and how to use `<symbol>` to easily reuse inline SVG images.
 
-## Update your `index.html` file
+- Use the `<picture>` element to add a responsive hero image to your main page.
+- On your about page, add an `<img>` with `srcset` and `size` attributes to serve different image sizes for different screen widths.
+- On your contact page, load an SVG image with `<img>`.
+- On your main page, create a `<symbol>` for a simple inline SVG. Display that symbol inside your second `<article>`.
 
-### :pencil: Configure the index.html `<head>` section
+## Continuity
 
-Open the `index.html` file in the root folder in VS Code. In the `<head>`, add your favicon info. You are welcome to copy the `<head>` from the First Webpage assignment. Make sure you have an accurate `<title>` and a `<meta>` description tag. Remember to include the favicon files.
+Before starting this assignment, copy the HTML from your previous assignment into the main `index.html`, the `contact/index.html`, and the `about/index.html`. Also copy your favicons over.
 
-### :keyboard: Add block-level semantic elements inside `<body>`
+## A hero image using `<picture>`
 
-| :bulb: For review of semantic elements                                                                                                                                                                                                                                                                                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <ul><li>See w3school's [HTML semantic elements](https://www.w3schools.com/html/html5_semantic_elements.asp) for a helpful summary and list of tags.</li><li>Read the individual element's pages on MDN in the list in their [Semantics in HTML](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#semantics_in_html) section.</li></ul> |
+A hero image is a large banner image that is displayed at the top of a webpage and is the first image visitors see. For examples, view Justinmind's' [post of 20 inspiring hero image websites](https://www.justinmind.com/blog/inspiring-hero-image-websites/) or search for examples on your own. Hero images should not include text. We will add text on top of tour hero image in a later assignment after we learn CSS.
 
-Use your site topic to generate content (text) inside the elements. The content is not as important as the structure of the page, so don't worry about spending a lot of time on writing "perfect" content. Add the following elements:
+| :bulb: Hero videos                                                                                      |
+| ------------------------------------------------------------------------------------------------------- |
+| _Hero videos are becoming popular, and we will learn how to create a hero video later in the semester_. |
 
-- `<header>`
-  - Inside `<header>` add a `<nav>`
-    - Inside the `<nav>`, use a `<ul>` for the navigation menu and include "Home" "About" and "Contact" list items. We'll add links to these later in the assignment.
-- `<main>` with a descriptive `<h1>`
-  - Inside `<main>` add two `<article>` elements
-    - Inside each `<article>` include a descriptive `<h2>` and at least one `<p>` element
-  - Inside one of the `<article>` elements include an image wrapped with `<figure>` tags with a figure caption. See [image requirement for more info](#image).
-- `<aside>` - you can simply include a pull quote from one of your articles. Wrap any text in `<p>` tags.
-- `<footer>` - wrap any text in `<p>` tags.
+A `<picture>` element allows for _art direction_, or different versions of images cropped to display best on different screen sizes. Below is an example of images cropped to display on (from left to right) a laptop, a tablet, and a mobile phone.
+![art-direction](/images/art-direction.jpg)
 
-| :bulb: Using Emmet abbreviations                                                                                                                                                                                                                                                        |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| You can use Emmet abbreviations to quickly add HTML tags. Reference the [Emmet cheat sheet](https://docs.emmet.io/cheat-sheet/) for a list of abbreviations. See if you can come up with a one-line Emmet abbreviation that can generate all the tags listed in the requirements above. |
+For this assignment we will create three versions of images for laptops, tablets, and mobile devices. There are no "set" widths and heights to use, but for this assignment, assume
 
-<table>
-  <tr><th colspan="2">Emmet example</th></tr>
-  <tr>
-    <td>type<br><code>header>nav>ul>li*3>a</code><br>and press <code>TAB</code> to generate this HTML</td>
-  <td><pre><code>&lt;header&gt;
-    &lt;nav&gt;
-      &lt;ul&gt;
-        &lt;li&gt;&lt;a href=""&gt;&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=""&gt;&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=""&gt;&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/nav&gt;
-  &lt;/header&gt;</code></pre></td>
-  </tr>
-</table>
+| Device | Max width | Suggested ratio |
+| ------ | --------- | --------------- |
+| laptop | `1920px`  | 16:9            |
+| tablet | `768px`   | 4:3             |
+| mobile | `380px`   | 1:1             |
 
-### :camera: [Add an image inside a `<figure>` element](#image)
+The ratios are guides. You are welcome to use different ratios based on your own preferences. If you'd like a full screen hero image, don't try to force the sizing with HTML. After we learn CSS, you use CSS to make the image fill the entire screen.
 
-Add an image inside your `<figure>` element. You can use [Unsplash](https://unsplash.com/) to find images, but you must resize any image to 900px wide or less. [befunky](https://www.befunky.com/create/) is a free online site where you can easily crop and resize images. NOTE: *save the original picture in a different folder. We will need larger sizes in later assignments.*
+### Steps to create your hero `<picture>` element
 
-Add a `<figcaption>` element with a caption for the image.
+1. Find a free high-resolution image for your hero image. You can search [Unsplash](https://unsplash.com/) or [Pexels](https://www.pexels.com/). If you use your own image, make sure the image is at least `1920px` wide.
+2. Use a photo editor, such as [befunky](https://www.befunky.com/create/), to crop and resize your image to display on all three screen sizes. Make sure the cropping is obvious; don't just resize the image.
+3. Save your images in the `images` folder. To make it easy for you to identify which image is which, append the width to the image file name. For example, in the images above, I used the file names
+   - `hero-squirrel-1920w.jpg`
+   - `hero-squirrel-768w.jpg`
+   - `hero-squirrel-380w.jpg`
+4. In your main `index.html` file, change the HTML to load your images (also delete the squirrel example images included in the repo). Here is the code included in the sample index.html:
 
-The image must be
+   ````<picture>
+    <source media="(min-width: 769px)" srcset="images/hero-squirrel-1920w.jpg">
+    <source media="(min-width: 381px)" srcset="images/hero-squirrel-768w.jpg">
+    <source media="(max-width: 380px)" srcset="images/hero-squirrel-380w.jpg">
+    <img src="images/hero-squirrel-380w.jpg" alt="brown squirrel on green grass lawn">
+   </picture>```
 
-- placed in the `images` folder
-- appropriately sized (900px wide or less)
+   Make sure to include a fallback <img> with descriptive alt text.
 
-The image element must
+   ````
 
-- include a *relative* path to the image file in the `images` folder
-- include an `alt` attribute
-- use both `height` and `width` attributes appropriately
+5. In order for the image to display properly, we need a little CSS. Add this line to your document `<head>` to load a simple CSS file included in the repo's style folder:
 
-| :bulb: Writing `alt` text                                                                                                                                                                                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Read a11y collective's [How to write great alt text](https://www.a11y-collective.com/how-to-write-great-alt-text/) for tips on writing good alt text. Remember to never include "image of..." in alt text as it is redundant. |
+   `<link rel="stylesheet" href="styles/main.css">`
 
-| :warning: The HTML size attribute should be set to an image's actual (intrinsic) dimensions.                                                                                                                                                                                     |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Do not use these attributes to resize an image. You should use CSS to resize images. For more info, reference Smashing Magazine's [Setting Height And Width On Images Is Important Again](https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/) |
-
-| :warning: Image and folder names                                                                                                                                                                                                                                                                                                                                                                                                   |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Never use spaces in an image or folder name that will be hosted on the web. Best practices are to always use lowercase letters and to use hyphens `-` (not underlines `_`) to separate words. <br><br>Since search engines look at image file names, give your image files descriptive names. For example, if you have a PNG image of a hedgehog, name the file `hedgehog.png` instead of something vague list `DCIMG-3033-54.png` |
-
-### :pencil: Text-level semantic elements
-
-Somewhere on your page, include the following text-level semantic elements with content in each:
-
-- `<strong>`
-- `<em>`
-
-## Add links in the navigation menu to the About and Contact subpages
-
-In the file explorer, notice that there are two folders (about, contact) that each contain an index.html file. These are the sub pages for your site.
-
-- Add relative links to the About and Contact pages in the main `index.html` navigation menu.
-- Open both `index.html` subpages and update their navigation links.
-
-| :bulb: Relative links                                                                                                                                                                                                                                                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Review MDN's [A quick primer on URLs and paths](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Creating_hyperlinks#a_quick_primer_on_urls_and_paths) for a review of relative links. Since the target files in the subfolders and named `index.html`, you don't need to include `index.html` in the paths. This generates a "cleaner" URL. |
-
-| :bulb: Placeholder links                                                                                                                                                                                                                                                                                       |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| You may notice on the About subpage that the `<a>` element for the About link is missing an `href` (the contact page is the same). An `href` attribute is not required, and you don't need to link a page to itself. The lack of an `href` attribute will make it easier to style the menu when we get to CSS. |
-
-😎 Add your favicon info to the `<head>` of each subpage. Adjust the paths (use relative paths) so that they refer to the images correctly. 
-
-Feel free to modify the your About and Contact pages to include more content. We will eventually add a form to the Contact page, but for now, just add some text.
-
-## :computer: Use Live Server to preview your webpage
+### Use Live Server and Dev Tools to make sure your images are loading properly
 
 Before you open your webpage in Live Server, check the bottom left info bar on VS Code. You want to make sure you don't have any errors or warnings which should look like this:<br><br>
 ![no errors or warnings](https://raw.githubusercontent.com/lsburtonBYU/codepen-images/main/errors.png)<br><br>
 If you have errors or warnings, click on the icons to see what they are and fix them.
 
-Once any problems are fixed, either choose "Go Live" in the VS Code bottom info panel, or find and select "Go Live" in `View -> Command Palette...` to view your webpage in a browser.
-
-If everything looks good then.....
+Once any problems are fixed, open Live Server.
 
 ## :arrow_up: Use VS Code's Source Control (in the sidebar) to commit your changes and sync these changes to Github
 
