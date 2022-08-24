@@ -73,6 +73,10 @@ Once any problems are fixed, open Live Server and use the Dev Tools to make sure
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Watch this [video on using Dev Tools with the `<picture>` element](https://youtu.be/2jkA83w1ibc) to learn how to use the Network tab in Dev Tools to check that your `<picture>` element images are downloading correctly |
 
+## :art: On your About page, add an `<img>` with `srcset` and `size` attributes to serve different image sizes for different screen widths.
+
+TODO: instructions
+
 ## :chart: Add SVG images
 
 ### Add an SVG image to your contact page using `<img>`
