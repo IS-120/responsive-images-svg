@@ -5,7 +5,7 @@ Learn how to do the following:
 - Use the `<picture>` element to create a responsive image with art direction.
 - Use an `<img>` with `srcset` and `size` attributes to serve different image sizes for different screen widths.
 - Load an SVG image with `<img>`.
-- Use inline SVGs and create a `<symbol>` to easily reuse inline SVGs.
+- Use inline SVGs and create a `<symbol>` to easily reuse your inline SVG.
 
 ## Continuity
 
@@ -13,7 +13,7 @@ Before starting this assignment, copy the HTML from your previous assignment int
 
 ## :art: Add a hero image using `<picture>`
 
-A hero image is a large banner image that is displayed at the top of a webpage and is the first image visitors see. For examples, view Justinmind's' [post of 20 inspiring hero image websites](https://www.justinmind.com/blog/inspiring-hero-image-websites/) or search for examples on your own. Hero images should not include text. We will add text on top of tour hero image in a later assignment after we learn CSS.
+A hero image is a large banner image that is displayed at the top of a webpage and is the first image visitors see. For examples, view Justinmind's' [post of 20 inspiring hero image websites](https://www.justinmind.com/blog/inspiring-hero-image-websites/) or search for examples on your own. Hero images should not include text. We will add text on top of our hero image in a later assignment after we learn CSS.
 
 | :bulb: Hero videos                                                                                      |
 | ------------------------------------------------------------------------------------------------------- |
@@ -30,7 +30,7 @@ For this assignment we will create three versions of images for laptops, tablets
 | tablet | `768px`   | 4:3             |
 | mobile | `380px`   | 1:1             |
 
-The ratios are guides. You are welcome to use different ratios based on your own preferences. If you'd like a full screen hero image, don't try to force the sizing with HTML. After we learn CSS, you use CSS to make the image fill the entire screen.
+The ratios are guides. You are welcome to use different ratios based on your own preferences. If you'd like a full screen hero image, don't try to force the sizing with HTML. After we learn CSS, you can use CSS to make the image fill the entire screen.
 
 ### Steps to create your hero `<picture>` element
 
@@ -51,7 +51,7 @@ The ratios are guides. You are welcome to use different ratios based on your own
    </picture>
    ```
 
-   Make sure to include a fallback <img> with descriptive alt text.
+   Make sure to include a fallback `<img>` with descriptive alt text.
 
 5. In order for the image to display properly, we need a little CSS. If this line is not already in your document `<head>` on all three of your html files, add this to your main `index.html` file:
 
