@@ -1,11 +1,11 @@
 # Responsive images and SVG images
 
-Learn about using `<picture>` for art direction, `<img>` with `srcset` and `sizes` for responsive images, and how to use `<symbol>` to easily reuse inline SVG images.
+Learn how to do the following:
 
-- Use the `<picture>` element to add a responsive hero image to your main page.
-- On your about page, add an `<img>` with `srcset` and `size` attributes to serve different image sizes for different screen widths.
-- On your contact page, load an SVG image with `<img>`.
-- On your main page, create a `<symbol>` for a simple inline SVG. Display that symbol inside your second `<article>`.
+- Use the `<picture>` element to create a responsive image with art direction.
+- Use an `<img>` with `srcset` and `size` attributes to serve different image sizes for different screen widths.
+- Load an SVG image with `<img>`.
+- Use inline SVGs and create a `<symbol>` to easily reuse inline SVGs.
 
 ## Continuity
 
@@ -42,20 +42,24 @@ The ratios are guides. You are welcome to use different ratios based on your own
    - `hero-squirrel-380w.jpg`
 4. In your main `index.html` file, change the HTML to load your images (also delete the squirrel example images included in the repo). Here is the code included in the sample index.html:
 
-   ````<picture>
+   ```
+   <picture>
     <source media="(min-width: 769px)" srcset="images/hero-squirrel-1920w.jpg">
     <source media="(min-width: 381px)" srcset="images/hero-squirrel-768w.jpg">
     <source media="(max-width: 380px)" srcset="images/hero-squirrel-380w.jpg">
     <img src="images/hero-squirrel-768w.jpg" alt="brown squirrel on green grass lawn">
-   </picture>```
+   </picture>
+   ```
 
    Make sure to include a fallback <img> with descriptive alt text.
 
-   ````
-
-5. In order for the image to display properly, we need a little CSS. Add this line to your document `<head>` to load a simple CSS file included in the repo's style folder:
+5. In order for the image to display properly, we need a little CSS. If this line is not already in your document `<head>` on all three of your html files, add this to your main `index.html` file:
 
    `<link rel="stylesheet" href="styles/main.css">`
+
+   And add this to your subpages (notice the relative path to the styles folder):
+
+   `<link rel="stylesheet" href="../styles/main.css">`
 
 ### Use Live Server and Dev Tools to make sure your images are loading properly
 
