@@ -13,13 +13,13 @@ Before starting this assignment, copy the HTML from your previous assignment int
 
 ## :art: Add a hero image using `<picture>`
 
-A hero image is a large banner image that is displayed at the top of a webpage and is the first image visitors see. For examples, view Justinmind's' [post of 20 inspiring hero image websites](https://www.justinmind.com/blog/inspiring-hero-image-websites/) or search for examples on your own. Hero images should not include text. We will add text on top of our hero image in a later assignment after we learn CSS.
+A hero image is a large banner image that is displayed at the top of a webpage and is the first image visitors see. The actual image in a hero images should not include text. We will learn how to add text on top of our hero image in a later assignment.
 
 | :bulb: Hero videos                                                                                      |
 | ------------------------------------------------------------------------------------------------------- |
 | _Hero videos are becoming popular, and we will learn how to create a hero video later in the semester_. |
 
-A `<picture>` element allows for _art direction_, or different versions of images cropped to display best on different screen sizes. Below is an example of images cropped to display on (from left to right) a laptop, a tablet, and a mobile phone.
+A `<picture>` element allows for _art direction_, or different versions of images cropped to display best on different screen sizes and devices. Below is an example of images cropped to display on (from left to right) a laptop, a tablet, and a mobile phone.
 ![art-direction](/images/art-direction.jpg)
 
 For this assignment we will create three versions of images for laptops, tablets, and mobile devices. There are no "set" widths and heights to use, but for this assignment, assume
@@ -51,9 +51,9 @@ The ratios are guides. You are welcome to use different ratios based on your own
    </picture>
    ```
 
-   Make sure to include a fallback `<img>` with descriptive alt text.
+   Make sure to include a fallback `<img>` with descriptive alt text. In the video below, I explain what the `media` attribute communicates to the browser.
 
-5. In order for the image to display properly, we need a little CSS. If this line is not already in your document `<head>` on all three of your html files, add this to your main `index.html` file:
+5. In order for the image to display properly, we need a little CSS. If this line is not already in the document `<head>` on all three of your html files, add this to your main `index.html` file:
 
    `<link rel="stylesheet" href="styles/main.css">`
 
@@ -90,7 +90,7 @@ Let's add an `<img>` with different image sizes to our `about/index.html` page.
 
    `<img src="../images/staring-squirrel-600w.jpg" alt="a brown squirrel on a black background">`
 
-   Add this markup to your `about/index.html` file, but load your image instead of the squirrel image.
+   but you would use your image file and a relevant `alt` attribute.
 
 5. Next, let's add the other images using the `srcset` attribute. List the path to all the images and then follow each path with a "width descriptor," which is the _intrinsic_ (actual) pixel width of the image (srcset can gets more complicated by accounting for screen pixel density, but we will keep this example as simple as possible). We added the width to the file name to help us keep the images separate, but the browser can't read that and needs you to let it know the width. Separate each path and width descriptor with a comma:
 
