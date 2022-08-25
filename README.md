@@ -75,7 +75,55 @@ Once any problems are fixed, open Live Server and use the Dev Tools to make sure
 
 ## :art: On your About page, add an `<img>` with `srcset` and `size` attributes to serve different image sizes for different screen widths.
 
-TODO: instructions
+While desktop computers can handle downloading large images, you don't want a user to waste bandwidth on a mobile device. You want to make sure that the image is downloaded at the right size for the device. This is where `<img>` with `srcset` and `size` attributes come in.
+
+Now, unlike the `<picture>` element, `<img>` with `srcset` and `size` attributes are not art direction. They are used to serve different sizes of the same image. Also, unlike `<picture>`, `<img>` with `srcset` and `size` does not guarantee a certain image will display at a given screen width. If the browser has a larger image cached, it will choose that instead.
+
+![srcset example](images/img-srcset.jpg)
+
+Let's add an `<img>` with different image sizes to our `about/index.html` page.
+
+1. Find a free high-resolution image for your About page image. You can search [Unsplash](https://unsplash.com/) or [Pexels](https://www.pexels.com/). Let's keep the max width of this image at 900px.
+2. Use a photo editor, such as [befunky](https://www.befunky.com/create/), to crop your image if desired, and then resize your image to be 900px wide. Save this image in the `images` folder. For convenience, append "-900w" to the image file name.
+3. Resize the same image to 600px wide and then 300px wide, appending the widths to the files names. Save these images in the `images` folder.
+4. Open the `about/index.html` file in VS Code. If you were simply loading the 600px wide image, you'd use this markup:
+
+   `<img src="../images/staring-squirrel-600w.jpg" alt="a brown squirrel on a black background">`
+
+   Add this markup to your `about/index.html` file, but load your image instead of the squirrel image.
+
+5. Next, let's add the other images using the `srcset` attribute. List the path to all the images and then follow each path with a "width descriptor," which is the _intrinsic_ (actual) pixel width of the image (srcset can gets more complicated by accounting for screen pixel density, but we will keep this example as simple as possible). We added the width to the file name to help us keep the images separate, but the browser can't read that and needs you to let it know the width. Separate each path and width descriptor with a comma:
+
+   ```
+   <img srcset="../images/staring-squirrel-300w.jpg 300w,
+               ../images/staring-squirrel-600w.jpg 600w,
+               ../images/staring-squirrel-900w.jpg 900w"
+       src="../images/staring-squirrel-600w.jpg"
+       alt="a brown squirrel on a black background">
+   ```
+
+6. Finally we need to add information to the `sizes` attribute. The sizes are relative to the browser viewport. The sizes will make more sense when you are able to use CSS to layout images.
+
+   I added some CSS to force the image on the About page to always be 50% of the page width. We can let the browser know that instead of downloading an image that is the full width of the page, it should download an image that is half of the page width. Add the `sizes` attribute below to tell the browser the image will always be half the page width (or 50vw - vertical width). _We will learn more about this in the CSS lesson._
+
+   ```
+   <img srcset="../images/staring-squirrel-300w.jpg 300w,
+            ../images/staring-squirrel-600w.jpg 600w,
+            ../images/staring-squirrel-900w.jpg 900w"
+        sizes="50vw"
+        src="../images/staring-squirrel-600w.jpg"
+        alt="a brown squirrel on a black background">
+   ```
+
+   In this example, if your browser viewport is 1000px wide, the browser will look for an image that is 500px wide. It will download the 600px wide image.
+
+   Open the Network tab in Firefox's Dev Tools and resize the window to see when the images download.
+
+   Chrome handles image loading a little differently and is more likely to reuse a larger image in the cache. Try viewing the Network tab in Chrome to see the difference.
+
+| :book: Learn more about srcset and sizes                                                                                                                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| This example was simply to introduce you to `srcset` and `sizes`. `sizes` can include media queries and account for high res displays like Apple's Retina display. Learn more at [MDN's The Image Embed element page](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset) |
 
 ## :chart: Add SVG images
 
