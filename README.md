@@ -47,11 +47,11 @@ The ratios are guides. You are welcome to use different ratios based on your own
     <source media="(min-width: 769px)" srcset="images/hero-squirrel-1920w.jpg">
     <source media="(min-width: 381px)" srcset="images/hero-squirrel-768w.jpg">
     <source media="(max-width: 380px)" srcset="images/hero-squirrel-380w.jpg">
-    <img src="images/hero-squirrel-768w.jpg" alt="brown squirrel on green grass lawn">
+    <img src="images/hero-squirrel-768w.jpg" alt="brown squirrel on green grass lawn" height=>
    </picture>
    ```
 
-   Make sure to include a fallback `<img>` with descriptive alt text. In the video below, I explain what the `media` attribute communicates to the browser.
+   Make sure to include a fallback `<img>` with descriptive alt text. In the video below, "Dev Tools and `<picture>`," I explain what the `media` attribute communicates to the browser.
 
 5. In order for the image to display properly, we need a little CSS. If this line is not already in the document `<head>` on all three of your html files, add this to your main `index.html` file:
 
@@ -150,6 +150,46 @@ If you have errors or warnings, click on the icons to see what they are and fix 
 If everything looks good, then....
 
 ## :arrow_up: Use VS Code's Source Control (in the sidebar) to commit your changes and sync these changes to Github
+
+Open the repo in Github and check that you've passed the automated tests. Look at the top right of your repo header. If you have passed all the tests, you'll see a green check mark:
+
+![passed tests](images/pass.png)
+
+If you failed any tests, your will see a red X. Click on the X to see which test failed. Click on the failed test name for more details.
+
+![failed tests](images/fail.png)
+
+If you see a yellow dot, it means that the test is still running. Wait for the test to finish.
+
+### Current automated tests
+
+- HTML validation
+- HTML proofer
+- `<head>` should have a `<title>`
+- `<head>` should have a `<meta>` description element
+- all HTML files should contain an `<h1>`, and only one `<h1>`
+- all HTML files should contain favicon information
+- all index.html files must contain a `<header>`
+- all `<header>` elements must contain a `<nav>` element
+- menu items in header `<nav>` must be in an `<ul>`
+- main index.html must contain a `<main>`
+- `<main>` must contain two `<article>` elements
+- each `<article>` must contain an `<h2>` and at least one `<p>`
+- main index.html must contain an `<aside>`
+- main index.html must contain a `<footer>`
+- text in the `<aside>` must inside a `<p>`
+- text in the `<footer>` must be inside a `<p>`
+- image paths are all lowercase and contain no spaces
+- images must be 900px wide or less
+- relative paths to images used, and images must be in the images directory
+- `<img>` height and width attributes are set to image intrinsic width
+- stylesheet `main.css` in `styles` folder is loaded on all pages using relative links
+- main `index.html` contains a `<picture>` element
+- `<picture>` element must contain three `<source>` elements with `media` and `srcset` attributes
+- `<picture>` element must contain a fallback image
+- about page includes an `<img>` element that uses `srcset` and `sizes` to load three versions of the same image with different widths
+- contact page loads an SVG file with `<img>`
+- main `index.html` includes a simple inline SVG image displayed using `<symbol>`
 
 ## :rocket: Publish your site on Github pages
 
