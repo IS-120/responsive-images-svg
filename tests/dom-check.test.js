@@ -134,7 +134,11 @@ test("<picture> element must contain three <source> elements with media and srcs
 test("<picture> element must contain a fallback image", () =>
   expect(docs[INDEX].querySelector("picture > img")).not.toBeNull());
 
-test("about page includes an <img> element that uses srcset and sizes to load three versions of the same image with different widths", () => {});
+test("about page includes an <img> element that uses srcset and sizes to load three versions of the same image with different widths", () => {
+  const img = docs[ABOUT].querySelector("img");
+  expect(img.getAttribute("srcset")).not.toBeNull();
+  expect(img.getAttribute("sizes")).not.toBeNull();
+});
 
 test("contact page loads an SVG file with <img>", () =>
   expect(docs[CONTACT].querySelector("img[src$='.svg']")).not.toBeNull());
