@@ -9,14 +9,16 @@ Learn how to do the following:
 
 ## Continuity
 
-Before starting this assignment, copy the HTML from your previous assignment into the main `index.html`, the `contact/index.html`, and the `about/index.html`. Also copy your favicons over.
+Before starting this assignment, copy the HTML from your previous assignment into the main `index.html`, the `contact/index.html`, and the `about/index.html`. Also copy your favicon images files over.
 
 ## :art: Add a hero image using `<picture>`
 
 A hero image is a large banner image that is displayed at the top of a webpage and is the first image visitors see. The actual image in a hero images should not include text. We will learn how to add text on top of our hero image in a later assignment.
 
+For this assignment, place your hero image either above or below the header on your main `index.html` page.
+
 | :bulb: Hero videos                                                                                      |
-| :------------------------------------------------------------------------------------------------------- |
+| :------------------------------------------------------------------------------------------------------ |
 | _Hero videos are becoming popular, and we will learn how to create a hero video later in the semester_. |
 
 A `<picture>` element allows for _art direction_, or different versions of images cropped to display best on different screen sizes and devices. Below is an example of images cropped to display on (from left to right) a laptop, a tablet, and a mobile phone.
@@ -30,13 +32,15 @@ For this assignment we will create three versions of images for laptops, tablets
 | tablet | `768px`   | 4:3             |
 | mobile | `380px`   | 1:1             |
 
-The ratios are guides. You are welcome to use different ratios based on your own preferences. If you'd like a full screen hero image, don't try to force the sizing with HTML. After we learn CSS, you can use CSS to make the image fill the entire screen.
+As discussed in class, the widths and ratios are guides. You are welcome to use different ratios based on your own preferences. If you'd like a full screen hero image, don't try to force the sizing with HTML. After we learn CSS, you can use CSS to make the image fill the entire screen.
+
+Finally, we will keep this assignment simple and assume the maximum screen width is `1920px`, and ignore pixel ratios (which on some devices are up to 4x). **Make sure none of your images are wider than `1920px`.** To see the pixel ratio of your computer or device, check out [mydevice.io](https://mydevice.io/).
 
 ### Steps to create your hero `<picture>` element
 
 1. Find a free high-resolution image for your hero image. You can search [Unsplash](https://unsplash.com/) or [Pexels](https://www.pexels.com/). If you use your own image, make sure the image is at least `1920px` wide.
 2. Use a photo editor, such as [befunky](https://www.befunky.com/create/), to crop and resize your image to display on all three screen sizes. Make sure the cropping is obvious; don't just resize the image.
-3. Save your images in the `images` folder. To make it easy for you to identify which image is which, append the width to the image file name. For example, in the images above, I used the file names
+3. Save your images in the `images` folder. In order for the auto-tester to detect that this is your hero image, begin the file name with `hero`. To make it easy for you to identify which image is which, append the width to the image file name. For example, in the images above, I used the file names
    - `hero-squirrel-1920w.jpg`
    - `hero-squirrel-768w.jpg`
    - `hero-squirrel-380w.jpg`
@@ -47,11 +51,13 @@ The ratios are guides. You are welcome to use different ratios based on your own
     <source media="(min-width: 769px)" srcset="images/hero-squirrel-1920w.jpg">
     <source media="(min-width: 381px)" srcset="images/hero-squirrel-768w.jpg">
     <source media="(max-width: 380px)" srcset="images/hero-squirrel-380w.jpg">
-    <img src="images/hero-squirrel-768w.jpg" alt="brown squirrel on green grass lawn" height=>
+    <img src="images/hero-squirrel-768w.jpg" alt="brown squirrel on green grass lawn">
    </picture>
    ```
 
-   Make sure to include a fallback `<img>` with descriptive alt text. In the video below, "Dev Tools and `<picture>`," I explain what the `media` attribute communicates to the browser.
+   Make sure to include a fallback `<img>` with descriptive alt text. Since the `<picture>` element is used for art direction, the source image dimensions will not be the same, so you should not use `<img>` `width` and `height` attributes as you would with single images.
+
+   In the video below, "Dev Tools and `<picture>`," I explain what the `media` attribute communicates to the browser.
 
 5. In order for the image to display properly, we need a little CSS. If this line is not already in the document `<head>` on all three of your html files, add this to your main `index.html` file:
 
@@ -70,7 +76,7 @@ If you have errors or warnings, click on the icons to see what they are and fix 
 Once any problems are fixed, open Live Server and use the Dev Tools to make sure your images are loading properly.
 
 | 🎥 WATCH: Dev Tools and `<picture>`                                                                                                                                                                                       |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Watch this [video on using Dev Tools with the `<picture>` element](https://youtu.be/2jkA83w1ibc) to learn how to use the Network tab in Dev Tools to check that your `<picture>` element images are downloading correctly |
 
 ## :art: On your About page, add an `<img>` with `srcset` and `size` attributes to serve different image sizes for different screen widths.
@@ -88,9 +94,9 @@ Let's add an `<img>` with different image sizes to our `about/index.html` page.
 3. Resize the same image to 600px wide and then 300px wide, appending the widths to the files names. Save these images in the `images` folder.
 4. Open the `about/index.html` file in VS Code. If you were simply loading the 600px wide image, you'd use this markup:
 
-   `<img src="../images/staring-squirrel-600w.jpg" alt="a brown squirrel on a black background">`
+   `<img src="../images/staring-squirrel-600w.jpg" alt="a brown squirrel on a black background" width="600" height="600">`
 
-   but you would use your image file and a relevant `alt` attribute.
+   but you would use your image file and a relevant `alt` attribute. Notice I've added the `width` and `height` attributes to the `<img>` element to match the intrinsic dimensions of the image.
 
 5. Next, let's add the other images using the `srcset` attribute. List the path to all the images and then follow each path with a "width descriptor," which is the _intrinsic_ (actual) pixel width of the image (srcset can gets more complicated by accounting for screen pixel density, but we will keep this example as simple as possible). We added the width to the file name to help us keep the images separate, but the browser can't read that and needs you to let it know the width. Separate each path and width descriptor with a comma:
 
@@ -99,7 +105,7 @@ Let's add an `<img>` with different image sizes to our `about/index.html` page.
                ../images/staring-squirrel-600w.jpg 600w,
                ../images/staring-squirrel-900w.jpg 900w"
        src="../images/staring-squirrel-600w.jpg"
-       alt="a brown squirrel on a black background">
+       alt="a brown squirrel on a black background" width="600" height="600">
    ```
 
 6. Finally we need to add information to the `sizes` attribute. The sizes are relative to the browser viewport. The sizes will make more sense when you are able to use CSS to layout images.
@@ -112,7 +118,7 @@ Let's add an `<img>` with different image sizes to our `about/index.html` page.
             ../images/staring-squirrel-900w.jpg 900w"
         sizes="50vw"
         src="../images/staring-squirrel-600w.jpg"
-        alt="a brown squirrel on a black background">
+        alt="a brown squirrel on a black background" width="600" height="600">
    ```
 
    In this example, if your browser viewport is 1000px wide, the browser will look for an image that is 500px wide. It will download the 600px wide image.
@@ -122,7 +128,7 @@ Let's add an `<img>` with different image sizes to our `about/index.html` page.
    Chrome handles image loading a little differently and is more likely to reuse a larger image in the cache. Try viewing the Network tab in Chrome to see the difference.
 
 | :book: Learn more about srcset and sizes                                                                                                                                                                                                                                                         |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | This example was simply to introduce you to `srcset` and `sizes`. `sizes` can include media queries and account for high res displays like Apple's Retina display. Learn more at [MDN's The Image Embed element page](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset) |
 
 ## :chart: Add SVG images
@@ -180,9 +186,9 @@ If you see a yellow dot, it means that the test is still running. Wait for the t
 - text in the `<aside>` must inside a `<p>`
 - text in the `<footer>` must be inside a `<p>`
 - image paths are all lowercase and contain no spaces
-- images must be 900px wide or less
+- images must be 1920px wide or less
 - relative paths to images used, and images must be in the images directory
-- `<img>` height and width attributes are set to image intrinsic width
+- images that aren't SVGs and images outside `<picture>` elements have the `<img>` `height` and `width` attributes set to the `src` image's intrinsic dimensions
 - stylesheet `main.css` in `styles` folder is loaded on all pages using relative links
 - main `index.html` contains a `<picture>` element
 - `<picture>` element must contain three `<source>` elements with `media` and `srcset` attributes

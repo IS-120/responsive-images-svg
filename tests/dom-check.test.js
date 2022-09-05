@@ -1,4 +1,5 @@
 const sizeOf = require("image-size");
+const http = require("http");
 const { doms, INDEX, ABOUT, CONTACT } = require("./dom-check.js");
 
 const docs = doms.map(dom => dom.window.document);
@@ -76,19 +77,29 @@ test("image paths are all lowercase and contain no spaces", () => {
   });
 
   // no uppercase or whitespace
-  const regex = new RegExp(/[A-Z]|\s/);
+  const noUpper = new RegExp(/[A-Z]|\s/);
+  const hero = new RegExp(/hero/);
+  const svg = new RegExp(/svg$/);
 
   imgs.forEach(img => {
     const path = img.src.replace(/^..\//, "");
     const dimensions = sizeOf(path);
-    images.push({ img: img, dimensions: dimensions, path: path });
-    expect(regex.test(path)).toBe(false);
+
+    images.push({
+      img: img,
+      dimensions: dimensions,
+      path: path,
+      checkDimensions: !hero.test(path) && !svg.test(path),
+    });
+    expect(noUpper.test(path)).toBe(false);
   });
 });
 
-// TODO: ignore this for img src set and picture
-test("images must be 900px wide or less", () =>
-  images.forEach(img => expect(img.dimensions.width).toBeLessThanOrEqual(900)));
+// TODO: check <picture> source images
+test("images must be 1920px wide or less", () =>
+  images.forEach(img =>
+    expect(img.dimensions.width).toBeLessThanOrEqual(1920)
+  ));
 
 test("relative paths to images used, and images must be in the images directory", () => {
   const regex = new RegExp(/^images\//);
@@ -97,11 +108,12 @@ test("relative paths to images used, and images must be in the images directory"
   });
 });
 
-// TODO: ignore for picture default image
-test("<img> height and width attributes are set to image intrinsic width", () => {
+test("images that aren't SVGs and images outside <picture> elements have the <img> height and width attributes set to the src image's intrinsic dimensions", () => {
   images.forEach(image => {
-    expect(image.img.width).toBe(image.dimensions.width);
-    expect(image.img.height).toBe(image.dimensions.height);
+    if (image.checkDimensions) {
+      expect(image.img.width).toBe(image.dimensions.width);
+      expect(image.img.height).toBe(image.dimensions.height);
+    }
   });
 });
 
@@ -110,12 +122,17 @@ test("<img> height and width attributes are set to image intrinsic width", () =>
 /*************/
 
 test("stylesheet main.css in styles folder is loaded on all pages using relative links", () => {
-  const regex = new RegExp(/^(..\/|)styles\/main.css/);
-  docs.forEach(doc => {
-    expect(doc.querySelector("link[rel='stylesheet']")).not.toBeNull();
-    expect(regex.test(doc.querySelector("link[rel='stylesheet']").href)).toBe(
-      true
-    );
+  docs.forEach((doc, i) => {
+    // relative links
+    if (i === INDEX) {
+      expect(doc.querySelector("link[rel='stylesheet']").href).toBe(
+        "styles/main.css"
+      );
+    } else {
+      expect(doc.querySelector("link[rel='stylesheet']").href).toBe(
+        "../styles/main.css"
+      );
+    }
   });
 });
 
