@@ -16,7 +16,7 @@ Before starting this assignment, copy the HTML from your previous assignment int
 A hero image is a large banner image that is displayed at the top of a webpage and is the first image visitors see. The actual image in a hero images should not include text. We will learn how to add text on top of our hero image in a later assignment.
 
 | :bulb: Hero videos                                                                                      |
-| ------------------------------------------------------------------------------------------------------- |
+| :------------------------------------------------------------------------------------------------------- |
 | _Hero videos are becoming popular, and we will learn how to create a hero video later in the semester_. |
 
 A `<picture>` element allows for _art direction_, or different versions of images cropped to display best on different screen sizes and devices. Below is an example of images cropped to display on (from left to right) a laptop, a tablet, and a mobile phone.
@@ -70,7 +70,7 @@ If you have errors or warnings, click on the icons to see what they are and fix 
 Once any problems are fixed, open Live Server and use the Dev Tools to make sure your images are loading properly.
 
 | 🎥 WATCH: Dev Tools and `<picture>`                                                                                                                                                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Watch this [video on using Dev Tools with the `<picture>` element](https://youtu.be/2jkA83w1ibc) to learn how to use the Network tab in Dev Tools to check that your `<picture>` element images are downloading correctly |
 
 ## :art: On your About page, add an `<img>` with `srcset` and `size` attributes to serve different image sizes for different screen widths.
@@ -122,7 +122,7 @@ Let's add an `<img>` with different image sizes to our `about/index.html` page.
    Chrome handles image loading a little differently and is more likely to reuse a larger image in the cache. Try viewing the Network tab in Chrome to see the difference.
 
 | :book: Learn more about srcset and sizes                                                                                                                                                                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | This example was simply to introduce you to `srcset` and `sizes`. `sizes` can include media queries and account for high res displays like Apple's Retina display. Learn more at [MDN's The Image Embed element page](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset) |
 
 ## :chart: Add SVG images
