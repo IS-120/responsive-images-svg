@@ -143,7 +143,7 @@ SVG images can be loaded on a web page just like PNG and JPG files.
 
 ### Add a simple inline SVG image to your main page using `<symbol>`
 
-You can use the inline SVG you wrote for the inline SVG learning task. It can be as simple as a circle, although many students create a "hamburger" menu icon to use for our mobile menu assignment. The location of the SVG isn't important, just make sure it is easy for a TA to find.
+You can use the inline SVG you wrote for the [inline SVG learning task](https://codepen.io/lsburton/pen/yLXvxJq). It can be as simple as a circle, although many students create a "hamburger" menu icon to use for our mobile menu assignment. The location of the SVG isn't important, as long as it is visible on the main `index.html`.
 
 Refer to the assigned reading [SVG intro](https://codepen.io/lsburton/pen/ZEBYbXw?editors=1100) for more information on inline SVG and `<symbol>`.
 
